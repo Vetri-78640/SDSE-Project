@@ -11,7 +11,7 @@ class BaseController {
   #ok(res: Response, data: unknown, message?: string) Response
   #created(res: Response, data: unknown, message?: string) Response
   #fail(res: Response, status: number, message: string) Response
-  #asyncHandler(fn: AsyncHandlerFn) RequestHandler
+  #asyncHandler~TReq extends Request = Request~(fn: (req: TReq, res: Response, next: NextFunction) => Promise~Response | void~) (req: TReq, res: Response, next: NextFunction) => void
 }
 
 class BaseService {
@@ -22,7 +22,7 @@ class BaseService {
 }
 
 class AstroController {
-  -signToken(user: JwtUser) string
+  -signToken(user: {_id: unknown; email: string; role: "user" | "admin"}) string
   +register: RequestHandler
   +login: RequestHandler
   +forgotPassword: RequestHandler
@@ -41,7 +41,7 @@ class ChartController {
 }
 
 class DoshaController {
-  -resolveDoshaRequest(doshaType: DoshaType, params: VedicParams) Promise~Record<string, unknown>~
+  -resolveDoshaRequest(doshaType: DoshaType, params: {dob: string; tob: string; lat: number; lon: number; tz: string}) Promise~Record<string, unknown>~
   +getDoshaTypes: RequestHandler
   +searchDoshas: RequestHandler
   +checkDosha: RequestHandler
@@ -82,8 +82,8 @@ class BirthChartService {
 class DoshaService {
   #serviceName: string
   +formatDate(date: Date | string) string
-  +calculateSeverity(apiResponse: Record<string, unknown>) DoshaSeverity
-  +formatReport(report: FormattableDoshaReport) Record<string, unknown>
+  +calculateSeverity(apiResponse: Record<string, unknown>) "low" | "medium" | "high"
+  +formatReport(report: {_id: unknown; doshaType: string; isPresent: boolean; severity: string; apiResponse?: Record<string, unknown>; remedies?: string[]; cachedAt?: Date; profileId?: {personalInfo?: {name?: string; dateOfBirth?: Date}}}) Record<string, unknown>
 }
 
 class ProfileService {
@@ -95,15 +95,15 @@ class ProfileService {
 }
 
 class LoggerService {
-  -logger: WinstonLogger
+  -logger: Logger
   +info(message: string) void
   +warn(message: string) void
   +error(message: string, stack?: string) void
 }
 
 class DoshaReportHelper {
-  +isExpired(report: IDoshaReport) boolean
-  +cacheReport(data: any) Promise~IDoshaReport~
+  +isExpired(report: IDoshaReport) boolean {static}
+  +cacheReport(data: any) Promise~IDoshaReport~ {static}
 }
 
 class IAstroService {
@@ -117,7 +117,7 @@ class AuthPayload {
   <<interface>>
   +_id: string
   +email: string
-  +role: user | admin
+  +role: "user" | "admin"
 }
 
 class VedicParams {
@@ -133,7 +133,7 @@ class User {
   +name: string
   +email: string
   +password: string
-  +role: user | admin
+  +role: "user" | "admin"
   +resetPasswordToken?: string
   +resetPasswordExpires?: Date
   +createdAt: Date
@@ -142,23 +142,21 @@ class User {
 
 class UserProfile {
   +userId: ObjectId
-  +personalInfo: PersonalInfo
+  +personalInfo: IPersonalInfo
   +timezone: string
   +isDeleted: boolean
   +deletedAt?: Date
-  +createdAt: Date
-  +updatedAt: Date
 }
 
-class PersonalInfo {
+class IPersonalInfo {
   +name: string
-  +gender: male | female | other
+  +gender: "male" | "female" | "other"
   +dateOfBirth: Date
   +timeOfBirth: string
-  +placeOfBirth: PlaceOfBirth
+  +placeOfBirth: IPlaceOfBirth
 }
 
-class PlaceOfBirth {
+class IPlaceOfBirth {
   +city: string
   +state?: string
   +country: string
@@ -178,8 +176,6 @@ class BirthChart {
   +chartImage?: string
   +generatedAt: Date
   +isDeleted: boolean
-  +createdAt: Date
-  +updatedAt: Date
 }
 
 class DoshaReport {
@@ -189,12 +185,10 @@ class DoshaReport {
   +inputParams: Record<string, unknown>
   +apiResponse: Record<string, unknown>
   +isPresent: boolean
-  +severity: low | medium | high
+  +severity: "low" | "medium" | "high"
   +remedies: string[]
   +cachedAt: Date
   +expiresAt: Date
-  +createdAt: Date
-  +updatedAt: Date
 }
 
 class GeoCoordinates {
@@ -230,9 +224,9 @@ UserProfile "1" --> "0..*" BirthChart : profileId
 User "1" --> "0..*" DoshaReport : userId
 UserProfile "1" --> "0..*" DoshaReport : profileId
 
-UserProfile *-- PersonalInfo
-PersonalInfo *-- PlaceOfBirth
-PlaceOfBirth *-- Coordinates
+UserProfile *-- IPersonalInfo
+IPersonalInfo *-- IPlaceOfBirth
+IPlaceOfBirth *-- Coordinates
 
 AstroController ..> User
 UserController ..> User
@@ -269,4 +263,3 @@ DoshaReportHelper ..> DoshaReport
 | `+` | Public |
 | `-` | Private |
 | `#` | Protected |
-
