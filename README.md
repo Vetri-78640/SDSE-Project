@@ -10,9 +10,9 @@
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
-> _Add screenshots of your UI here once built_
+<img width="1800" height="1036" alt="image" src="https://github.com/user-attachments/assets/d7ebc034-8e46-461e-8be3-a1241dca94ae" />
 
 ---
 
