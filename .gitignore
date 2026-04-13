@@ -1,14 +1,27 @@
+# Dependencies
 node_modules/
 Backend/astrology-api/node_modules/
+
+# Environment
 .env
-*.log
+.env.local
+
+# Build output
 dist/
 build/
+
+# IDE and tools
 .gemini/
 .claude/
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Opencode config (local only)
 opencode.json
-ARCHITECTURAL_DOCS.md
-GEMINI.md
-graphify-out/
-.gitignore
-/Users/vetri/Downloads/NST/Sem 4/SDSE/Project/SDSE Capstopne/opencode.json
