@@ -4,7 +4,7 @@
 > Updated with SOLID principles implementation and OOP encapsulation.
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#4a90d9', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#f0f0f0'}}}%%
+%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
 classDiagram
     direction TB
     

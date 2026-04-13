@@ -1,8 +1,9 @@
-# Simplified Astrology Platform Sequence Diagram
+# Sequence Diagram
 
-This simplified diagram is designed for easy reproduction in drawing applications like draw.io or Excalidraw, abstracting away deep technical syntax for clear logical flow blocks.
+> Flow of operations for the Astrology backend
 
 ```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
 sequenceDiagram
     participant User as Frontend App
     participant API as Node Backend
@@ -26,10 +27,10 @@ sequenceDiagram
     User->>API: Request Dosha Details
     API->>DB: Check for Cached Data
     
-    alt Cache Valid & Exists
+    alt Cache Valid and Exists
         DB-->>API: Return Saved Dosha
-    else No Cache / Expired
-        API->>VA: Fetch Fresh Manglik/Dosha Data
+    else No Cache or Expired
+        API->>VA: Fetch Fresh Dosha Data
         VA-->>API: Return Dosha Results
         API->>DB: Write New Cache to DB
     end
@@ -41,3 +42,34 @@ sequenceDiagram
     DB-->>API: Confirm Deletion
     API-->>User: Update Chart List UI
 ```
+
+---
+
+## Explanation
+
+### Step 1: Manage Birth Profile
+1. User sends Date of Birth, Time of Birth, and Location
+2. Backend saves profile to MongoDB
+3. Confirmation returned to user
+
+### Step 2: Calculate Birth Chart
+1. User requests birth chart generation
+2. Backend calls VedicAstro API with coordinates
+3. API returns chart data
+4. Backend stores chart in MongoDB
+5. Frontend displays the chart
+
+### Step 3: Analyze Dosha Status
+1. User requests dosha details
+2. Backend checks for existing cached data in MongoDB
+3. If cached - return saved data
+4. If not cached - call VedicAstro API, store result, return to user
+
+### Step 4: Manage Saved Reports
+1. User requests to delete a chart
+2. Backend removes record from MongoDB
+3. Confirmation sent to frontend
+
+---
+
+*Updated: April 2026*
