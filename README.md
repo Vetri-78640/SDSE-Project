@@ -377,8 +377,8 @@ NEXT_PUBLIC_API_URL=http://localhost:5000/api
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/astroverse.git
-cd astroverse
+git clone https://github.com/vedant-valid/SDSE-Project.git
+
 ```
 
 ### 2. Setup Backend
