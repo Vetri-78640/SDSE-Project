@@ -1,17 +1,24 @@
 import { BaseService } from "../core/BaseService";
-import { formatDateForVedic, isValidTime24h } from "../utils/dateTimeHelper";
 
+// Single Responsibility: Each function does one thing
 export class BirthChartService extends BaseService {
   protected readonly serviceName = "BirthChartService";
 
+  // Responsibility 1: Date formatting
   public formatDate(date: Date | string): string {
-    return formatDateForVedic(date);
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 
+  // Responsibility 2: Time validation
   public isValidTimeFormat(time: string): boolean {
-    return isValidTime24h(time);
+    return /^([01]\d|2[0-3]):([0-5]\d)$/.test(time);
   }
 
+  // Responsibility 3: Time conversion
   public convertTo24Hour(time12h: string): string {
     const [time, modifier] = time12h.split(" ");
     let [hours, minutes] = time.split(":");

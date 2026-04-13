@@ -4,6 +4,15 @@ import { BaseService } from "../core/BaseService";
 import { VedicParams } from "../types/vedic";
 import { IAstroService } from "./interfaces/IAstroService";
 
+// Open/Closed: DoshaType to endpoint mapping - easy to extend without modifying code
+const DOSHA_ENDPOINT_MAP: Record<string, string> = {
+  manglik: vedicAstroConfig.endpoints.manglikDosh,
+  kalsarp: vedicAstroConfig.endpoints.kalsarpDosh,
+  sadesati: vedicAstroConfig.endpoints.sadesati,
+  pitradosh: vedicAstroConfig.endpoints.pitradosh,
+  nadi: vedicAstroConfig.endpoints.nadiDosh,
+};
+
 export class AstroService extends BaseService implements IAstroService {
   protected readonly serviceName = "AstroService";
   private readonly client: AxiosInstance;
@@ -16,6 +25,7 @@ export class AstroService extends BaseService implements IAstroService {
     });
   }
 
+  // Single Responsibility: Only makes API calls
   private async callApi(
     endpoint: string,
     params: Record<string, unknown>
@@ -30,27 +40,16 @@ export class AstroService extends BaseService implements IAstroService {
     return response.data as Record<string, unknown>;
   }
 
+  // Single Responsibility: One method per dosha, follow Open/Closed
   public fetchManglikDosh(params: VedicParams): Promise<Record<string, unknown>> {
-    return this.callApi(vedicAstroConfig.endpoints.manglikDosh, { ...params });
+    return this.callApi(DOSHA_ENDPOINT_MAP["manglik"], { ...params });
   }
 
+  // Open/Closed: No switch needed - just add to map in one place
   public fetchOtherdosha(params: VedicParams, doshaType: string): Promise<Record<string, unknown>> {
-    let endpoint = "";
-    switch (doshaType) {
-      case "kalsarp":
-        endpoint = vedicAstroConfig.endpoints.kalsarpDosh;
-        break;
-      case "sadesati":
-        endpoint = vedicAstroConfig.endpoints.sadesati;
-        break;
-      case "pitradosh":
-        endpoint = vedicAstroConfig.endpoints.pitradosh;
-        break;
-      case "nadi":
-        endpoint = vedicAstroConfig.endpoints.nadiDosh;
-        break;
-      default:
-        throw new Error("Invalid dosha type for fetchOtherdosha");
+    const endpoint = DOSHA_ENDPOINT_MAP[doshaType];
+    if (!endpoint) {
+      throw new Error(`Invalid dosha type: ${doshaType}. Valid types: ${Object.keys(DOSHA_ENDPOINT_MAP).join(", ")}`);
     }
     return this.callApi(endpoint, { ...params });
   }

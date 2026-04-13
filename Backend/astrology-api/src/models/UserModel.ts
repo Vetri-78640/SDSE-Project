@@ -1,17 +1,23 @@
 import mongoose, { Document, Schema } from "mongoose";
 
+// Public interface - exposed to API responses
 export interface IUser extends Document {
+  _id: mongoose.Types.ObjectId;
   name: string;
   email: string;
-  password: string;
   role: "user" | "admin";
-  resetPasswordToken?: string;
-  resetPasswordExpires?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
 
-const userSchema = new Schema<IUser>(
+// Internal interface - used only in backend (not exposed to API)
+interface IUserInternal extends IUser {
+  password: string;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: Date;
+}
+
+const userSchema = new Schema<IUserInternal>(
   {
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
@@ -23,4 +29,13 @@ const userSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
-export const UserModel = mongoose.model<IUser>("User", userSchema);
+// Always exclude sensitive fields from queries
+userSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  delete obj.resetPasswordToken;
+  delete obj.resetPasswordExpires;
+  return obj;
+};
+
+export const UserModel = mongoose.model<IUserInternal>("User", userSchema);

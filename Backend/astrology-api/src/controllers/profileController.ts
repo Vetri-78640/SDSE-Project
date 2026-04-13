@@ -79,7 +79,7 @@ class ProfileController extends BaseController {
     const profile = await profileService.getProfileByUserId(targetUserId);
     if (!profile) return this.fail(res, 404, "Profile not found");
 
-    await profileService.softDeleteProfile(profile);
+    await profileService.deleteProfile(profile);
 
     await BirthChartModel.updateMany({ profileId: profile._id }, { isDeleted: true });
     await DoshaReportModel.deleteMany({ profileId: profile._id });
