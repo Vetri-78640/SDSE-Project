@@ -5,6 +5,7 @@ Backend/astrology-api/node_modules/
 # Environment
 .env
 .env.local
+.env.example
 
 # Build output
 dist/
