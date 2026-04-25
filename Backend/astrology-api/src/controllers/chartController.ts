@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { ChartType } from "../config/vedicAstroConfig";
 import { BaseController } from "../core/BaseController";
 import { BirthChartModel } from "../models/BirthChartModel";
 import { IUserProfile, UserProfileModel } from "../models/UserProfileModel";
@@ -23,14 +24,25 @@ class ChartController extends BaseController {
     const profile = await UserProfileModel.findOne({ userId, isDeleted: false });
     if (!profile) return this.fail(res, 404, "Please create your profile first");
 
-    const chartData = await astroService.fetchBirthChart(this.buildChartParamsFromProfile(profile));
+    const chartType = (req.body.chartType || "horoscope-chart-svg-code") as ChartType;
+    const chartData = await astroService.fetchChartByType(
+      this.buildChartParamsFromProfile(profile),
+      chartType
+    );
+
+    const svgValue =
+      (chartData.output as string | undefined) ||
+      (chartData.svg as string | undefined) ||
+      (chartData.svg_chart as string | undefined) ||
+      (chartData.chart_url as string | undefined) ||
+      "";
 
     const chart = await BirthChartModel.create({
       userId,
       profileId: profile._id,
       chartName: req.body.chartName || "My Birth Chart",
       chartData,
-      chartImage: String((chartData.svg_chart || chartData.chart_url || "") as string),
+      chartImage: String(svgValue),
       generatedAt: new Date(),
     });
 

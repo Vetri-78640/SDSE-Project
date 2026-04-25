@@ -1,7 +1,11 @@
 import Joi from "joi";
+import { supportedChartTypes } from "../config/vedicAstroConfig";
 
 export const chartGenerationSchema = Joi.object({
   chartName: Joi.string().min(2).max(100),
+  chartType: Joi.string()
+    .valid(...supportedChartTypes)
+    .default("horoscope-chart-svg-code"),
 });
 
 export const birthDetailsUpdateSchema = Joi.object({

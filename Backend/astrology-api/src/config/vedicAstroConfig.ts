@@ -1,6 +1,8 @@
 export const vedicAstroConfig = {
   baseURL: process.env.VEDIC_ASTRO_BASE_URL || "https://api.vedicastroapi.com/v3-json",
   apiKey: process.env.VEDIC_ASTRO_API_KEY || "",
+  chartBaseURL: process.env.FREE_ASTRO_BASE_URL || "https://json.freeastrologyapi.com",
+  chartApiKey: process.env.FREE_ASTRO_API_KEY || process.env.VEDIC_ASTRO_API_KEY || "",
   timeout: 10000,
   endpoints: {
     manglikDosh: "/dosha/manglik-dosh",
@@ -12,3 +14,50 @@ export const vedicAstroConfig = {
     planetPosition: "/horoscope/planet-position",
   },
 } as const;
+
+export const chartTypeToEndpoint = {
+  horoscopeSvg: "horoscope-chart-svg-code",
+  navamsaSvg: "navamsa-chart-svg-code",
+  d2Svg: "d2-chart-svg-code",
+  d3Svg: "d3-chart-svg-code",
+  d4Svg: "d4-chart-svg-code",
+  d5Svg: "d5-chart-svg-code",
+  d6Svg: "d6-chart-svg-code",
+  d7Svg: "d7-chart-svg-code",
+  d8Svg: "d8-chart-svg-code",
+  d10Svg: "d10-chart-svg-code",
+  d11Svg: "d11-chart-svg-code",
+  d12Svg: "d12-chart-svg-code",
+  d16Svg: "d16-chart-svg-code",
+  d20Svg: "d20-chart-svg-code",
+  d24Svg: "d24-chart-svg-code",
+  d27Svg: "d27-chart-svg-code",
+  d30Svg: "d30-chart-svg-code",
+  d40Svg: "d40-chart-svg-code",
+  d45Svg: "d45-chart-svg-code",
+  d60Svg: "d60-chart-svg-code",
+  horoscopeUrl: "horoscope-chart-url",
+  navamsaUrl: "navamsa-chart-url",
+  d2Url: "d2-chart-url",
+  d3Url: "d3-chart-url",
+  d4Url: "d4-chart-url",
+  d5Url: "d5-chart-url",
+  d6Url: "d6-chart-url",
+  d7Url: "d7-chart-url",
+  d8Url: "d8-chart-url",
+  d10Url: "d10-chart-url",
+  d11Url: "d11-chart-url",
+  d12Url: "d12-chart-url",
+  d16Url: "d16-chart-url",
+  d20Url: "d20-chart-url",
+  d24Url: "d24-chart-url",
+  d27Url: "d27-chart-url",
+  d30Url: "d30-chart-url",
+  d40Url: "d40-chart-url",
+  d45Url: "d45-chart-url",
+  d60Url: "d60-chart-url",
+} as const;
+
+export type ChartType = (typeof chartTypeToEndpoint)[keyof typeof chartTypeToEndpoint];
+
+export const supportedChartTypes = Object.values(chartTypeToEndpoint);
