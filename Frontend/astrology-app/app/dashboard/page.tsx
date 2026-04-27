@@ -88,11 +88,13 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-serif text-lg text-amber">Your Profile</h2>
             {!loadingProfile && !profile && (
-              <Link
-                href="/profile/create"
-                className="text-xs tracking-widest px-4 py-2 bg-saffron text-white hover:bg-saffron/80 transition-colors"
-              >
+              <Link href="/profile/create" className="text-xs tracking-widest px-4 py-2 bg-saffron text-white hover:bg-saffron/80 transition-colors">
                 + CREATE PROFILE
+              </Link>
+            )}
+            {!loadingProfile && profile && (
+              <Link href="/profile/edit" className="text-xs tracking-widest px-4 py-2 border border-gold/30 text-cosmic hover:border-gold/60 hover:text-gold transition-colors">
+                EDIT
               </Link>
             )}
           </div>

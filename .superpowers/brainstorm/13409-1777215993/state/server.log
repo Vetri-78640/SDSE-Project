@@ -1,0 +1,7 @@
+{"type":"server-started","port":55057,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:55057","screen_dir":"/Users/vedantmadne/Desktop/SDSE-Project/.superpowers/brainstorm/13409-1777215993/content","state_dir":"/Users/vedantmadne/Desktop/SDSE-Project/.superpowers/brainstorm/13409-1777215993/state"}
+{"type":"screen-added","file":"/Users/vedantmadne/Desktop/SDSE-Project/.superpowers/brainstorm/13409-1777215993/content/homepage-layout.html"}
+{"type":"screen-updated","file":"/Users/vedantmadne/Desktop/SDSE-Project/.superpowers/brainstorm/13409-1777215993/content/homepage-layout.html"}
+{"type":"screen-updated","file":"/Users/vedantmadne/Desktop/SDSE-Project/.superpowers/brainstorm/13409-1777215993/content/homepage-layout.html"}
+{"type":"screen-updated","file":"/Users/vedantmadne/Desktop/SDSE-Project/.superpowers/brainstorm/13409-1777215993/content/homepage-layout.html"}
+{"type":"screen-updated","file":"/Users/vedantmadne/Desktop/SDSE-Project/.superpowers/brainstorm/13409-1777215993/content/homepage-layout.html"}
+{"type":"server-stopped","reason":"idle timeout"}

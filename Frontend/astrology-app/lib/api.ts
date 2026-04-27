@@ -43,6 +43,10 @@ export const api = {
       name: string; gender: string; dateOfBirth: string; timeOfBirth: string
       city: string; state?: string; country: string; timezone?: string
     }) => request('/api/profile/create', { method: 'POST', body: JSON.stringify(body) }),
+    update: (body: Partial<{
+      name: string; gender: string; dateOfBirth: string; timeOfBirth: string
+      city: string; state: string; country: string; timezone: string
+    }>) => request('/api/profile', { method: 'PATCH', body: JSON.stringify(body) }),
   },
   chart: {
     generate: (chartName?: string) =>

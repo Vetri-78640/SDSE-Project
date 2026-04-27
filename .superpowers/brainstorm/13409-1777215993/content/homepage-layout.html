@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepa's Vision — Homepage Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #FAF7F2; color: #2C1810; }
+
+  /* ── COLORS ── */
+  :root {
+    --crimson: #8B1A1A;
+    --crimson-dark: #6E1310;
+    --gold: #C8860A;
+    --cream: #FAF7F2;
+    --parchment: #F0E6D3;
+    --text: #2C1810;
+    --muted: #7A5C46;
+  }
+
+  /* ── TORN PAPER DIVIDER ── */
+  .torn {
+    width: 100%;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .torn svg { width: 100%; height: 100%; }
+
+  /* ── NAV ── */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 60px; border-bottom: 1px solid #E8D5C4;
+    background: white; position: sticky; top: 0; z-index: 99;
+  }
+  .nav-logo { font-size: 1.1rem; font-weight: 700; color: var(--crimson); letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+  .nav-logo span { color: var(--gold); font-size: 1.3rem; }
+  .nav-links { display: flex; gap: 28px; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); }
+  .nav-links a { color: inherit; text-decoration: none; }
+  .nav-links a:hover { color: var(--crimson); }
+  .nav-cta { border: 1.5px solid var(--crimson); color: var(--crimson); padding: 8px 20px; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; background: none; font-family: inherit; }
+  .nav-cta:hover { background: var(--crimson); color: white; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 88vh; display: flex; align-items: center;
+    padding: 60px 80px; gap: 60px; background: white;
+    position: relative; overflow: hidden;
+  }
+  .hero-left { flex: 1; }
+  .hero-eyebrow { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-family: sans-serif; }
+  .hero-headline { font-size: 3.6rem; line-height: 1.15; color: var(--crimson); margin-bottom: 12px; }
+  .hero-headline em { color: #B8860B; font-style: normal; }
+  .hero-sub { font-size: 1.1rem; color: var(--muted); font-style: italic; margin-bottom: 8px; }
+  .hero-sub2 { font-size: 0.9rem; color: #9C7E6A; margin-bottom: 32px; line-height: 1.6; max-width: 420px; }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: var(--crimson); color: white; padding: 14px 32px; font-size: 0.9rem; letter-spacing: 1px; border: none; cursor: pointer; font-family: Georgia, serif; }
+  .btn-outline { border: 1.5px solid var(--crimson); color: var(--crimson); padding: 14px 28px; font-size: 0.9rem; letter-spacing: 1px; background: none; cursor: pointer; font-family: Georgia, serif; }
+  .hero-right { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+  .hero-orb { width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(ellipse at center, #FDEBD0 0%, #F9C97C 40%, #F0A030 70%, transparent 100%); display: flex; align-items: center; justify-content: center; position: relative; }
+  .hero-figure { width: 160px; height: 200px; background: var(--crimson); opacity: 0.15; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; position: absolute; bottom: 60px; }
+  .bubble { position: absolute; background: rgba(255,220,150,0.8); border-radius: 50px; padding: 6px 14px; font-size: 0.72rem; color: #6B3A00; font-style: italic; }
+  .b1 { top: 30px; left: 20px; } .b2 { top: 10px; right: 40px; }
+  .b3 { top: 90px; left: -10px; } .b4 { top: 80px; right: 10px; }
+  .b5 { bottom: 120px; left: 0; } .b6 { bottom: 100px; right: 20px; }
+  .b7 { bottom: 60px; left: 30px; }
+  .seo-badge { display: flex; gap: 24px; margin-top: 40px; }
+  .seo-stat { text-align: center; }
+  .seo-num { font-size: 1.6rem; font-weight: 700; color: var(--crimson); }
+  .seo-label { font-size: 0.7rem; color: var(--muted); font-family: sans-serif; letter-spacing: 0.5px; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 80px 80px; }
+  .section-eyebrow { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-family: sans-serif; margin-bottom: 8px; text-align: center; }
+  .section-title { font-size: 2.4rem; color: var(--crimson); text-align: center; margin-bottom: 8px; }
+  .section-sub { font-size: 0.95rem; color: var(--muted); text-align: center; font-style: italic; margin-bottom: 48px; }
+
+  /* ── TESTIMONIALS (Famous) ── */
+  .testi-section { background: white; }
+  .testi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .testi-card { border: 1px solid #E8D5C4; padding: 0; overflow: hidden; }
+  .testi-thumb { width: 100%; height: 160px; background: #2C1810; display: flex; align-items: center; justify-content: center; }
+  .testi-thumb-inner { width: 100%; height: 100%; background: linear-gradient(135deg, #3D2010 0%, #6B3A00 100%); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); font-size: 0.75rem; letter-spacing: 1px; }
+  .testi-body { padding: 16px; }
+  .testi-name { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .testi-role { font-size: 0.72rem; color: var(--gold); font-family: sans-serif; margin-bottom: 10px; }
+  .testi-quote { font-size: 0.78rem; color: var(--muted); line-height: 1.6; font-style: italic; }
+  .testi-mute { color: var(--crimson); font-size: 0.7rem; margin-top: 8px; display: block; font-family: sans-serif; text-decoration: underline; cursor: pointer; }
+
+  /* ── PARCHMENT SECTION ── */
+  .parchment-section { background: var(--parchment); position: relative; }
+  .parchment-top, .parchment-bottom { height: 50px; background: white; position: relative; }
+
+  /* ── STATS ── */
+  .stats-section { background: var(--parchment); padding: 60px 80px; }
+  .stats-grid { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; }
+  .stat-item { text-align: center; flex: 1; min-width: 160px; padding: 20px; border-right: 1px solid #D4B896; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 2.6rem; font-weight: 700; color: var(--crimson); line-height: 1; }
+  .stat-label { font-size: 0.78rem; color: var(--muted); font-family: sans-serif; margin-top: 6px; line-height: 1.4; }
+
+  /* ── HOW IT WORKS ── */
+  .how-section { background: white; display: flex; gap: 60px; align-items: center; padding: 80px; }
+  .how-left { flex: 1; }
+  .how-title { font-size: 2.4rem; color: var(--crimson); line-height: 1.2; margin-bottom: 20px; }
+  .how-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+  .how-desc strong { color: var(--crimson); }
+  .how-quote { border-left: 3px solid var(--crimson); padding: 12px 20px; background: #FDF5EC; margin: 20px 0; font-style: italic; font-size: 0.9rem; color: var(--text); }
+  .how-right { flex: 1; }
+  .how-card { border: 1px solid #E8D5C4; padding: 40px; text-align: center; }
+  .how-card-icon { font-size: 2.5rem; margin-bottom: 12px; }
+  .how-card-title { font-size: 1.2rem; color: var(--crimson); margin-bottom: 10px; }
+  .how-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .how-card-btn { background: var(--crimson); color: white; padding: 10px 24px; border: none; cursor: pointer; font-family: Georgia, serif; font-size: 0.85rem; letter-spacing: 0.5px; }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--cream); padding: 80px; }
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .service-card { background: var(--crimson); color: white; padding: 28px 24px; position: relative; }
+  .service-num { position: absolute; top: 16px; right: 16px; font-size: 1.1rem; color: rgba(255,255,255,0.4); font-weight: 700; }
+  .service-title { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+  .service-items { list-style: none; font-size: 0.75rem; line-height: 1.9; opacity: 0.85; }
+  .service-items li::before { content: "· "; }
+  .service-cta { margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 16px; text-align: center; }
+  .service-btn { background: white; color: var(--crimson); padding: 8px 20px; border: none; cursor: pointer; font-family: Georgia, serif; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; width: 100%; }
+
+  /* ── WORDS OF JOY ── */
+  .joy-section { background: #FDF0EC; padding: 80px; }
+  .joy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .joy-card { background: white; overflow: hidden; border: 1px solid #E8D5C4; }
+  .joy-video { width: 100%; height: 180px; background: #2C1810; display: flex; align-items: center; justify-content: center; position: relative; }
+  .joy-play { width: 44px; height: 44px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; }
+  .joy-play::after { content: "▶"; color: white; font-size: 14px; margin-left: 3px; }
+  .joy-text-card { background: white; padding: 20px; border: 1px solid #E8D5C4; }
+  .joy-quote { font-size: 0.82rem; color: var(--muted); font-style: italic; line-height: 1.6; margin-bottom: 16px; }
+  .joy-person { display: flex; align-items: center; gap: 10px; }
+  .joy-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--crimson); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; font-weight: 700; }
+  .joy-name { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+  .joy-role { font-size: 0.7rem; color: var(--gold); font-family: sans-serif; }
+
+  /* ── CTA BANNER ── */
+  .cta-section { background: var(--crimson); padding: 80px; text-align: center; }
+  .cta-title { font-size: 2.8rem; color: white; margin-bottom: 12px; }
+  .cta-sub { font-size: 1rem; color: rgba(255,255,255,0.7); font-style: italic; margin-bottom: 36px; }
+  .cta-btns { display: flex; justify-content: center; gap: 16px; }
+  .btn-white { background: white; color: var(--crimson); padding: 14px 36px; border: none; cursor: pointer; font-family: Georgia, serif; font-size: 0.95rem; font-weight: 700; }
+  .btn-ghost { border: 1.5px solid rgba(255,255,255,0.6); color: white; padding: 14px 32px; background: none; cursor: pointer; font-family: Georgia, serif; font-size: 0.95rem; }
+
+  /* ── FOOTER ── */
+  footer { background: #1A0A0A; color: rgba(255,255,255,0.6); padding: 48px 80px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
+  .footer-brand { font-size: 1.1rem; color: white; margin-bottom: 10px; }
+  .footer-tagline { font-size: 0.8rem; font-style: italic; line-height: 1.6; }
+  .footer-col h4 { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-family: sans-serif; }
+  .footer-col a { display: block; font-size: 0.78rem; margin-bottom: 8px; color: rgba(255,255,255,0.5); text-decoration: none; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.72rem; display: flex; justify-content: space-between; font-family: sans-serif; }
+
+  /* ── TORN SVG ── */
+  .divider { line-height: 0; }
+  .divider svg { display: block; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>★</span> Deepa's Vision</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">समाधान</a>
+    <a href="#">Products</a>
+    <a href="#">9 Grahas</a>
+    <a href="#">भरोसा</a>
+    <a href="#">FAQs</a>
+    <a href="#">Contact</a>
+  </div>
+  <button class="nav-cta">Let's Sit</button>
+</nav>
+
+<!-- HERO -->
+<div style="background:white;">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Vedic Astrology · ज्योतिष</div>
+      <h1 class="hero-headline">Stuck in a <em>doubt?</em></h1>
+      <p class="hero-sub">दौड़ का ये फेरा, कौन सा रास्ता है मेरा?</p>
+      <p class="hero-sub2">Deepa's Vision helps you discover your true path through authentic Vedic astrology — your Kundali, Doshas, and Dasha decoded with clarity.</p>
+      <div class="hero-btns">
+        <button class="btn-primary">अपनी Kundali बनाएं →</button>
+        <button class="btn-outline">Learn More</button>
+      </div>
+      <div class="seo-badge">
+        <div class="seo-stat"><div class="seo-num">3,500+</div><div class="seo-label">Individuals guided</div></div>
+        <div class="seo-stat"><div class="seo-num">10+</div><div class="seo-label">Countries</div></div>
+        <div class="seo-stat"><div class="seo-num">250K+</div><div class="seo-label">Lives touched</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-orb">
+        <div class="hero-figure"></div>
+        <div class="bubble b1">Confusion</div>
+        <div class="bubble b2">Worry</div>
+        <div class="bubble b3">Anger</div>
+        <div class="bubble b4">Arrogance</div>
+        <div class="bubble b5">Laziness</div>
+        <div class="bubble b6">Self pity</div>
+        <div class="bubble b7">Delusion</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TORN DIVIDER -->
+<div class="divider">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" style="height:50px;background:#F0E6D3;">
+    <path d="M0,0 L0,30 Q50,50 100,35 Q150,20 200,38 Q260,55 320,30 Q380,10 440,35 Q500,55 560,32 Q620,12 680,36 Q740,55 800,30 Q860,8 920,34 Q980,55 1040,28 Q1100,5 1160,32 Q1220,55 1280,30 Q1340,8 1380,35 L1440,28 L1440,0 Z" fill="white"/>
+  </svg>
+</div>
+
+<!-- WHAT PEOPLE SAY (Famous testimonials) -->
+<section class="testi-section" style="background:#F0E6D3; padding: 60px 80px;">
+  <div class="section-eyebrow">भरोसा — Testimonials</div>
+  <h2 class="section-title">What people say—</h2>
+  <div class="testi-grid">
+    <div class="testi-card" style="background:white;">
+      <div class="testi-thumb"><div class="testi-thumb-inner">[ Video Thumbnail ]</div></div>
+      <div class="testi-body">
+        <div class="testi-name">Manoj Bajpayee</div>
+        <div class="testi-role">Actor</div>
+        <div class="testi-quote">"Manoj focused on his other sources of income during Sade Sati — guided that it would not support him in the field."</div>
+        <span class="testi-mute">▶ Watch</span>
+      </div>
+    </div>
+    <div class="testi-card" style="background:white;">
+      <div class="testi-thumb"><div class="testi-thumb-inner">[ Video Thumbnail ]</div></div>
+      <div class="testi-body">
+        <div class="testi-name">Sourav Joshi</div>
+        <div class="testi-role">Youtuber, Vlogger & Artist</div>
+        <div class="testi-quote">"Sourav mentioned many times that he took major decisions considering astrology and settled things accordingly."</div>
+        <span class="testi-mute">▶ Watch</span>
+      </div>
+    </div>
+    <div class="testi-card" style="background:white;">
+      <div class="testi-thumb"><div class="testi-thumb-inner">[ Video Thumbnail ]</div></div>
+      <div class="testi-body">
+        <div class="testi-name">Ranveer Allahbadia</div>
+        <div class="testi-role">Youtuber & Podcaster</div>
+        <div class="testi-quote">"Ranveer follows astrology a lot in his profession — office, home, and meditation practices all influenced by it."</div>
+        <span class="testi-mute">▶ Watch</span>
+      </div>
+    </div>
+    <div class="testi-card" style="background:white;">
+      <div class="testi-thumb"><div class="testi-thumb-inner">[ Video Thumbnail ]</div></div>
+      <div class="testi-body">
+        <div class="testi-name">Sanjiv Goenka</div>
+        <div class="testi-role">Billionaire & Investor</div>
+        <div class="testi-quote">"For investing in land and selected projects, he often consults his astrologer."</div>
+        <span class="testi-mute">▶ Watch</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TORN DIVIDER -->
+<div class="divider">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" style="height:50px;background:white;">
+    <path d="M0,50 L0,20 Q60,0 120,22 Q180,42 240,18 Q300,0 360,24 Q420,45 480,20 Q540,0 600,22 Q660,42 720,18 Q780,0 840,24 Q900,45 960,20 Q1020,0 1080,22 Q1140,42 1200,18 Q1260,0 1320,22 L1440,15 L1440,50 Z" fill="#F0E6D3"/>
+  </svg>
+</div>
+
+<!-- STATS -->
+<section style="background:white; padding:64px 80px;">
+  <h2 class="section-title" style="margin-bottom:40px;">So Far We've Guided<em style="color:#B8860B;">...</em></h2>
+  <div class="stats-grid">
+    <div class="stat-item"><div class="stat-num">3,500+</div><div class="stat-label">individuals<br>(Relationships, Marriages & Birth issues)</div></div>
+    <div class="stat-item"><div class="stat-num">2,500+</div><div class="stat-label">Students<br>in career</div></div>
+    <div class="stat-item"><div class="stat-num">300+</div><div class="stat-label">Business &<br>factory owners</div></div>
+    <div class="stat-item"><div class="stat-num">90+</div><div class="stat-label">Clients over<br>10 countries</div></div>
+    <div class="stat-item" style="border-right:none;"><div class="stat-num">250,000+</div><div class="stat-label">individuals in<br>Webinars, YT & 1-1 sessions</div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="divider">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" style="height:50px;background:#F0E6D3;">
+    <path d="M0,0 L0,30 Q50,50 100,35 Q150,20 200,38 Q260,55 320,30 Q380,10 440,35 Q500,55 560,32 Q620,12 680,36 Q740,55 800,30 Q860,8 920,34 Q980,55 1040,28 Q1100,5 1160,32 Q1220,55 1280,30 Q1340,8 1380,35 L1440,28 L1440,0 Z" fill="white"/>
+  </svg>
+</div>
+<div style="background:#F0E6D3;">
+  <div class="how-section" style="background:#F0E6D3;">
+    <div class="how-left">
+      <div class="section-eyebrow" style="text-align:left;">How it works</div>
+      <h2 class="how-title">How Deepa's <span style="color:#B8860B;">Shiksha</span> works?</h2>
+      <p class="how-desc">With years of experience in <strong>वैदिक Astrology</strong>, <strong>Numerology</strong>, and <strong>Lal Kitab</strong>, Deepa's Vision offers <strong>कर्मिक उपाय</strong> and guides you toward the right <strong>करियर</strong> and <strong>जीवन मार्ग</strong> — not through भय, but with clarity and meaningful solutions.</p>
+      <div class="how-quote">"Simply we will tell you → What you can do better than others, और you can outsmart the race & Troubles"</div>
+      <button class="btn-primary" style="margin-top:8px;">Discover Now</button>
+    </div>
+    <div class="how-right">
+      <div class="how-card">
+        <div class="how-card-icon">🪬</div>
+        <div class="how-card-title">1:1 Strategic Session</div>
+        <div class="how-card-desc">By sitting calmly in a 1-1 Discussion which works on the formula —<br>Session = Strategy + Direction − (Chaos × Doubts)</div>
+        <button class="how-card-btn">Learn More</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="divider">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" style="height:50px;background:white;">
+    <path d="M0,50 L0,20 Q60,0 120,22 Q180,42 240,18 Q300,0 360,24 Q420,45 480,20 Q540,0 600,22 Q660,42 720,18 Q780,0 840,24 Q900,45 960,20 Q1020,0 1080,22 Q1140,42 1200,18 Q1260,0 1320,22 L1440,15 L1440,50 Z" fill="#F0E6D3"/>
+  </svg>
+</div>
+<section class="services-section" style="background:white;">
+  <div class="section-eyebrow">Services · सेवाएं</div>
+  <h2 class="section-title">What We Cherish For You —</h2>
+  <p class="section-sub">(Services)</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-num">1</div><div class="service-title">Students & Career</div><ul class="service-items"><li>Choosing the right education field</li><li>Career hurdles or planning a switch</li><li>Hobbies & passions</li><li>Choosing the best for you</li></ul><div class="service-cta"><button class="service-btn">LET'S SIT</button></div></div>
+    <div class="service-card"><div class="service-num">2</div><div class="service-title">Business Owners</div><ul class="service-items"><li>Expansion and Franchise</li><li>Partnerships and collaborations</li><li>Downfalls & solutions</li><li>Is it worth the risk?</li></ul><div class="service-cta"><button class="service-btn">LET'S SIT</button></div></div>
+    <div class="service-card"><div class="service-num">3</div><div class="service-title">Corporate Professionals</div><ul class="service-items"><li>Job or Role switch</li><li>New opportunities</li><li>Foreign settlements</li><li>How long to stay in the job?</li></ul><div class="service-cta"><button class="service-btn">LET'S SIT</button></div></div>
+    <div class="service-card"><div class="service-num">4</div><div class="service-title">Relationships & Family</div><ul class="service-items"><li>Resolving marriage issues</li><li>Family disputes and resolutions</li><li>Stress</li><li>Childcare planning</li></ul><div class="service-cta"><button class="service-btn">LET'S SIT</button></div></div>
+    <div class="service-card"><div class="service-num">5</div><div class="service-title">Mental Health</div><ul class="service-items"><li>Depression and frustration</li><li>Insomnia</li><li>Lack of confidence</li><li>Poor decision-making</li></ul><div class="service-cta"><button class="service-btn">LET'S SIT</button></div></div>
+    <div class="service-card"><div class="service-num">6</div><div class="service-title">Health Problems</div><ul class="service-items"><li>Heart problems (stent)</li><li>Diabetes</li><li>Stress</li><li>Eating habits</li></ul><div class="service-cta"><button class="service-btn">LET'S SIT</button></div></div>
+    <div class="service-card"><div class="service-num">7</div><div class="service-title">Investing</div><ul class="service-items"><li>Stock market, Land & property</li><li>Knowing where to invest — stocks, land, gold, or other assets</li></ul><div class="service-cta"><button class="service-btn">LET'S SIT</button></div></div>
+    <div class="service-card"><div class="service-num">8</div><div class="service-title">Civil Servants</div><ul class="service-items"><li>Postings and transfer orders</li><li>Workplace-related matters</li></ul><div class="service-cta"><button class="service-btn">LET'S SIT</button></div></div>
+  </div>
+</section>
+
+<!-- WORDS OF JOY -->
+<div class="divider">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" style="height:50px;background:#FDF0EC;">
+    <path d="M0,0 L0,30 Q50,50 100,35 Q150,20 200,38 Q260,55 320,30 Q380,10 440,35 Q500,55 560,32 Q620,12 680,36 Q740,55 800,30 Q860,8 920,34 Q980,55 1040,28 Q1100,5 1160,32 Q1220,55 1280,30 Q1340,8 1380,35 L1440,28 L1440,0 Z" fill="white"/>
+  </svg>
+</div>
+<section class="joy-section">
+  <div class="section-eyebrow">Client Stories</div>
+  <h2 class="section-title">Words of <em style="color:var(--crimson); font-style:normal;">Joy</em></h2>
+  <p class="section-sub">Real moments, genuine smiles, and heartfelt memories — these are the little sparks that light up our lives with joy.</p>
+  <div class="joy-grid">
+    <div class="joy-card"><div class="joy-video" style="background:#3D2010;"><div class="joy-play"></div></div><div style="padding:16px;"><p class="joy-quote">"I didn't believe in remedies at first, but suddenly it all makes sense."</p><div class="joy-person"><div class="joy-avatar">P</div><div><div class="joy-name">Pallavi</div><div class="joy-role">Manager, Taj Hotels</div></div></div></div></div>
+    <div class="joy-card"><div class="joy-video" style="background:#2C1810;"><div class="joy-play"></div></div><div style="padding:16px;"><p class="joy-quote">"Outstanding quality and professional service. Highly recommend to everyone."</p><div class="joy-person"><div class="joy-avatar">R</div><div><div class="joy-name">Ritu Godhii</div><div class="joy-role">Entrepreneur</div></div></div></div></div>
+    <div class="joy-text-card">
+      <p style="font-size:2rem;color:var(--crimson);line-height:1;">"</p>
+      <p class="joy-quote">"Professional team that delivered exceptional results on time and budget."</p>
+      <div class="joy-person" style="margin-top:12px;"><div class="joy-avatar" style="background:#B8860B;">E</div><div><div class="joy-name">Emily Rodriguez</div><div class="joy-role" style="color:var(--gold);">CEO, StartupXYZ</div></div></div>
+    </div>
+    <div class="joy-text-card">
+      <p style="font-size:2rem;color:var(--crimson);line-height:1;">"</p>
+      <p class="joy-quote">"Incredible attention to detail and creative solutions that exceeded goals."</p>
+      <div class="joy-person" style="margin-top:12px;"><div class="joy-avatar" style="background:#6E1310;">D</div><div><div class="joy-name">David Thompson</div><div class="joy-role" style="color:var(--gold);">Creative Director</div></div></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:36px;">
+    <button style="background:none;border:none;cursor:pointer;font-size:1.5rem;color:var(--crimson);margin:0 12px;">←</button>
+    <button style="background:none;border:none;cursor:pointer;font-size:1.5rem;color:var(--crimson);margin:0 12px;">→</button>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="section-eyebrow" style="color:rgba(255,255,255,0.5);">अभी शुरू करें</div>
+  <h2 class="cta-title">अपना भविष्य जानें —<br><span style="font-size:2rem;font-weight:400;font-style:italic;">Know Your Destiny</span></h2>
+  <p class="cta-sub">Generate your free Kundali today. Ancient wisdom, modern clarity.</p>
+  <div class="cta-btns">
+    <button class="btn-white">🪐 अपनी Kundali बनाएं</button>
+    <button class="btn-ghost">Book a 1:1 Session</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">★ Deepa's Vision</div>
+      <div class="footer-tagline">Ancient wisdom for the modern journey.<br>Vedic Astrology · Numerology · Lal Kitab</div>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="#">Birth Chart</a>
+      <a href="#">Dosha Report</a>
+      <a href="#">9 Grahas</a>
+      <a href="#">Dashboard</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">FAQs</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#">YouTube</a>
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Deepa's Vision · Built with ancient wisdom</span>
+    <span>🪐 ज्योतिष विद्या</span>
+  </div>
+</footer>
+
+</body>
+</html>

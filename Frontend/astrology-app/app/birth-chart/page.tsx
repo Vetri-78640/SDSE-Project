@@ -345,7 +345,7 @@ function ChartDisplay({ data, onDelete }: { data: ChartData; onDelete?: () => vo
         <Section title="Kundali (Birth Chart)">
           <div className="flex justify-center">
             <KundaliGrid
-              planets={planets as { name: string; house: number; degree_in_sign?: number; is_retrograde?: boolean }[]}
+              planets={planets as { name: string; sign?: string; house: number; degree_in_sign?: number; is_retrograde?: boolean }[]}
               houses={houses as { house: number; sign: string }[]}
               ascendantSign={ascendant.sign}
               className="w-full max-w-[480px]"
