@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 
-% Packages
+% --- Packages ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{geometry}
@@ -15,65 +15,129 @@
 \usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{charter} % Professional font
+\usepackage{microtype}
+\usepackage{tikz}
 
-% Styles
-\onehalfspacing
-\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
-
+% --- Color Palette (Astrology Theme: Deep Blue & Gold) ---
+\definecolor{astrologyblue}{RGB}{15, 23, 42}
+\definecolor{astrologygold}{RGB}{218, 165, 32}
+\definecolor{lightgray}{RGB}{245, 245, 245}
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
+% --- Styles & Formatting ---
+\onehalfspacing
+\hypersetup{
+    colorlinks=true,
+    linkcolor=astrologyblue,
+    filecolor=magenta,
+    urlcolor=astrologyblue,
+}
+
+% Section Titles Styling
+\titleformat{\section}
+  {\color{astrologyblue}\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+\titleformat{\subsection}
+  {\color{astrologyblue}\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\color{astrologyblue}\normalsize\bfseries}{\thesubsubsection}{1em}{}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Deepa's Vision: System Design Report}}
+\fancyhead[R]{\thepage}
+\fancyfoot[L]{Newton School of Technology}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Code Block Styling
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
+    backgroundcolor=\color{lightgray},
     commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
+    keywordstyle=\color{blue},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
     basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
     showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2
+    showtabs=false,
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{astrologyblue}
 }
 \lstset{style=mystyle}
+
+% Custom TColorBox for SD Insights
+\newtcolorbox{sdinsight}[1]{
+    colback=astrologyblue!5!white,
+    colframe=astrologyblue,
+    fonttitle=\bfseries,
+    title=#1,
+    arc=4pt,
+    outer arc=4pt
+}
 
 \begin{document}
 
 % --- TITLE PAGE ---
 \begin{titlepage}
     \centering
-    \vspace*{1cm}
-    
-    {\Huge \textbf{Newton School of Technology} \par}
-    \vspace{1.5cm}
-    
-    {\Large \textbf{System Design \& Software Engineering Project} \par}
-    \vspace{0.5cm}
-    {\huge \textbf{Deepa's Vision: The Vedic Astrology Intelligence Platform} \par}
-    
-    \vspace{2.5cm}
-    
-    {\Large \textbf{Prepared By:} \par}
-    \vspace{0.5cm}
-    \begin{tabular}{ll}
-        \textbf{Vetriselvan R} & 2401010501 \\
-        \textbf{Hrishi Dongre} & 2401010191 \\
-        \textbf{Vedant Madne} & 2401010499 \\
-        \textbf{Ishan Goyal} & 2401010193 \\
-        \textbf{Tattva Rajput} & 2401010478 \\
-    \end{tabular}
-    
-    \vspace{2.5cm}
+    \vspace*{1.5cm}
 
+    {\Huge \textbf{\color{astrologyblue}Newton School of Technology} \par}
+    \vspace{0.5cm}
+    {\large \textit{Shaping the Future of Computer Science} \par}
+
+    \vspace{1.5cm}
+    % TikZ Astrology Star Icon
+    \begin{tikzpicture}[scale=0.8]
+        \foreach \i in {0,45,...,315}
+            \draw[astrologygold, line width=1.5pt] (0,0) -- (\i:1.5);
+        \foreach \i in {22.5,67.5,...,337.5}
+            \draw[astrologyblue, line width=1pt] (0,0) -- (\i:0.8);
+        \draw[astrologyblue, line width=2pt] (0,0) circle (0.4);
+        \draw[astrologygold, line width=1pt] (0,0) circle (1.5);
+    \end{tikzpicture}
+    \vspace{1cm}
+
+    \rule{\linewidth}{1pt} \par
+    \vspace{0.5cm}
+    {\huge \textbf{\color{astrologyblue}Deepa's Vision} \par}
+    \vspace{0.3cm}
+    {\Large \textit{The Vedic Astrology Intelligence Platform} \par}
+    \vspace{0.5cm}
+    \rule{\linewidth}{1pt} \par
+
+    \vspace{2cm}
+    {\large \textbf{System Design \& Software Engineering Project} \par}
+    \vspace{1cm}
+
+    \begin{tcolorbox}[colback=white, colframe=astrologyblue, width=0.8\textwidth, center]
+        \centering
+        \textbf{Prepared By:} \par
+        \vspace{0.3cm}
+        \begin{tabular}{ll}
+            \textbf{Vetriselvan R} & 2401010501 \\
+            \textbf{Hrishi Dongre} & 2401010191 \\
+            \textbf{Vedant Madne} & 2401010499 \\
+            \textbf{Ishan Goyal} & 2401010193 \\
+            \textbf{Tattva Rajput} & 2401010478 \\
+        \end{tabular}
+    \end{tcolorbox}
+
+    \vfill
+    {\large \today \par}
 \end{titlepage}
 
 \newpage
@@ -98,7 +162,7 @@ The platform is a full-stack solution utilizing:
 \begin{itemize}
     \item \textbf{Frontend:} Next.js 14 with App Router, utilizing React's component-based architecture for a modular UI.
     \item \textbf{Backend:} Node.js with Express and TypeScript, structured into a 3-tier MVC-S (Model-View-Controller-Service) architecture.
-    \item \textbf{Database:} MongoDB Atlas for persistence, with specialized TTL (Time-To-Live) indexes for automated cache invalidation.
+    \item \textbf{Database:} MongoDB Atlas for persistence, with specialized TTL (Time-To-Live) indexes on the \texttt{DoshaReport} collection for automated expiry of stored reports.
     \item \textbf{Integration:} VedicAstro API for astronomical computations (Natal Charts, Dosha Severity).
 \end{itemize}
 
@@ -108,7 +172,7 @@ The platform is a full-stack solution utilizing:
 We implemented a strict separation of concerns through a layered approach:
 \begin{enumerate}
     \item \textbf{Route Layer:} Entry points that define API contracts.
-    \item \textbf{Middleware Layer:} Handles cross-cutting concerns like JWT verification, rate limiting, and request validation.
+    \item \textbf{Middleware Layer:} Handles cross-cutting concerns like JWT verification and request validation.
     \item \textbf{Controller Layer:} Orchestrates the request/response cycle. It does \textit{not} contain business logic but delegates to services.
     \item \textbf{Service Layer:} The core of the application. It handles external API communication, business rules, and data formatting.
     \item \textbf{Model/Data Layer:} Manages interactions with MongoDB using Mongoose, enforcing schema-level invariants.
@@ -118,47 +182,42 @@ We implemented a strict separation of concerns through a layered approach:
 In a project with multiple external dependencies (like the VedicAstro API), the system would quickly become unmanageable without SD principles. For example:
 \begin{itemize}
     \item \textbf{Abstraction} allowed us to switch from a mock API to the real production API during development with minimal code changes.
-    \item \textbf{Design Patterns} like \textit{Strategy} allowed us to handle 5+ different Dosha types using a single service method, rather than a 50-line \texttt{switch} statement.
+    \item \textbf{Design Patterns} like \textit{Strategy} allowed us to handle 5+ different Dosha types using a single dispatch method, rather than duplicated logic spread across multiple controllers.
     \item \textbf{SOLID Principles} ensured that as we added new features (like Pitra Dosh or Nadi Dosh), we didn't break existing functionality (Manglik Dosh).
 \end{itemize}
 
 \section{Object-Oriented Programming (OOP) Deep Dive}
 
 \subsection{Core Concepts}
+
 \subsubsection{Classes \& Objects}
 Every logical unit in the backend is a Class. This allows for better organization and state management. For instance, the \texttt{AstroService} class maintains its own Axios instance, ensuring that headers and base URLs are encapsulated and not leaked.
 
 \subsubsection{Constructors \& Dependency Injection}
-We avoided hard-coding dependencies. Instead, we used constructor-based injection.
-\begin{lstlisting}[language=TypeScript]
-// Dependency Inversion at work
-export class DoshaController extends BaseController {
-  constructor(private astroService: IAstroService) { 
-    super(); // Inherit BaseController functionality
-  }
-}
-\end{lstlisting}
+We avoided hard-coding dependencies by relying on module-level singletons that are typed against their interfaces. Services such as \texttt{astroService} and \texttt{doshaService} are instantiated once and imported into controllers. TypeScript enforces that these instances satisfy their respective interfaces (\texttt{IAstroService}), ensuring that the controller layer is never coupled to internal implementation details such as Axios or specific API endpoints.
 
 \subsubsection{Invariants}
 Invariants are rules that must always be true for an object to be valid. In our \texttt{UserProfile} model, we enforce that \texttt{timeOfBirth} must match a specific \texttt{HH:mm} regex, and coordinates must be valid numbers. This prevents "dirty data" from reaching the business logic layer.
 
 \subsection{OOP Mechanisms}
+
 \subsubsection{Encapsulation (Access Control)}
 We use TypeScript's access modifiers (\texttt{private}, \texttt{protected}, \texttt{public}) to define clear boundaries.
 \begin{itemize}
-    \item \textbf{Private:} Internal helper methods like \texttt{calculateDegrees()} in services are hidden from controllers.
+    \item \textbf{Private:} Internal helper methods like \texttt{callApi()} in \texttt{AstroService} are hidden from controllers. Dosha computation methods such as \texttt{computeManglik()} and \texttt{computeKalSarp()} are also private, accessible only within the service.
     \item \textbf{Protected:} Methods in \texttt{BaseController} (like \texttt{ok()}) are available to child controllers but hidden from the rest of the app.
 \end{itemize}
 
 \subsubsection{Abstraction \& Interfaces}
-We define blueprints using interfaces. The \texttt{IAstroService} interface ensures that any service implementation (regardless of the external provider) must provide \texttt{fetchBirthChart()} and \texttt{fetchDosha()} methods.
+We define blueprints using interfaces. The \texttt{IAstroService} interface ensures that any service implementation (regardless of the external provider) must provide \texttt{fetchBirthChart()} and \texttt{fetchManglikDosh()} methods, guaranteeing a stable contract between controllers and services.
 
 \subsubsection{Inheritance \& Polymorphism}
 All controllers inherit from \texttt{BaseController}, inheriting the \texttt{asyncHandler} which handles all try/catch logic automatically. Polymorphism allows the router to treat all controllers as a standard \texttt{Handler} type while executing their specific logic.
 
 \subsection{Object Relationships}
+
 \subsubsection{Composition}
-The \texttt{DoshaController} is \textit{composed} of an \texttt{AstroService} and a \texttt{CacheService}. This "Has-A" relationship is preferred over "Is-A" (Inheritance) because it makes the controller more flexible and easier to test.
+The \texttt{DoshaController} is \textit{composed} of an \texttt{AstroService} instance. This "Has-A" relationship is preferred over "Is-A" (Inheritance) because it makes the controller more flexible and easier to test.
 
 \subsubsection{DTOs \& Domain Objects}
 We use \texttt{VedicParams} as a DTO to move user birth data from the controller to the service layer. This ensures that the service layer only receives exactly what it needs to perform calculations.
@@ -166,16 +225,16 @@ We use \texttt{VedicParams} as a DTO to move user birth data from the controller
 \section{Unified Modelling Language (UML)}
 
 \subsection{Structural: Class Diagram}
-Our Class Diagram shows a clear hierarchy. The \texttt{BaseController} acts as a root for \texttt{AuthController}, \texttt{ProfileController}, and \texttt{DoshaController}. Note the \textbf{Dependency Inversion} where controllers depend on the \texttt{IAstroService} interface rather than the concrete \texttt{AstroService} class.
+Our Class Diagram shows a clear hierarchy. The \texttt{BaseController} acts as a root for \texttt{AstroController}, \texttt{ProfileController}, and \texttt{DoshaController}. Note the \textbf{Dependency Inversion} where controllers depend on the \texttt{IAstroService} interface rather than the concrete \texttt{AstroService} class.
 
 \subsection{Behavioral: Sequence Diagram}
-The Sequence Diagram reveals the "Request-Cache-API" flow:
+The Sequence Diagram reveals the "Request-Compute-Persist" flow:
 \begin{enumerate}
     \item \textbf{User} submits birth data via the Next.js UI.
-    \item \textbf{Controller} receives the request and checks the \textbf{MongoDB Cache}.
-    \item If \textbf{Cache Hit}: Returns the stored report immediately (Response time: <50ms).
-    \item If \textbf{Cache Miss}: Calls the \textbf{AstroService Strategy}, which invokes the \textbf{VedicAstro API}.
-    \item \textbf{Service} formats the response, saves it to the cache, and returns it.
+    \item \textbf{Controller} receives the request, loads the user's profile, and calls \texttt{fetchVedicChart()} on \textbf{AstroService}.
+    \item \textbf{AstroService} invokes the \textbf{VedicAstro API} and returns the full chart data.
+    \item \textbf{Controller} calls \texttt{computeDosha()} to derive the requested dosha from the chart data locally, with no additional external API call.
+    \item \textbf{Controller} persists the result to MongoDB as a \texttt{DoshaReport} with a 30-day TTL, then returns the formatted response.
 \end{enumerate}
 
 \section{Entity Relationship Diagram (ERD)}
@@ -184,7 +243,7 @@ The Sequence Diagram reveals the "Request-Cache-API" flow:
 \begin{itemize}
     \item \textbf{USER:} Stores authentication data. Sensitive fields (\texttt{password}) are hidden from query results by default.
     \item \textbf{USER\_PROFILE:} Linked to \texttt{USER} via a \textbf{Unique Foreign Key} (\texttt{userId}). Contains nested objects for birth location.
-    \item \textbf{DOSHA\_REPORT:} Contains the analysis result. It includes an \texttt{expiresAt} field for TTL caching.
+    \item \textbf{DOSHA\_REPORT:} Contains the analysis result. It includes an \texttt{expiresAt} field backed by a MongoDB TTL index, which automatically deletes the document after 30 days.
 \end{itemize}
 
 \subsection{Mapping Cardinalities}
@@ -201,21 +260,21 @@ The \texttt{AstroService} is initialized as a Singleton. This is crucial because
 \subsection{Structural: Adapter \& Composite}
 \begin{itemize}
     \item \textbf{Adapter Pattern:} The \texttt{AstroService} "adapts" the external API's raw response (which might have inconsistent naming) into our application's \texttt{IDoshaReport} format.
-    \item \textbf{Composite Pattern:} Our frontend's \texttt{ReportCard} component is a composite of \texttt{SeverityBadge}, \texttt{RemedyList}, and \texttt{ChartGrid} components.
+    \item \textbf{Composite Pattern:} Our frontend's \texttt{KundaliGrid} component is a composite of individual house cells, planet badges, and planetary position labels. Each sub-component renders independently but is assembled by \texttt{KundaliGrid} into a single cohesive chart view.
 \end{itemize}
 
 \subsection{Behavioral: Strategy \& Observer}
 \begin{itemize}
-    \item \textbf{Strategy Pattern:} The \texttt{DOSHA\_ENDPOINT\_MAP} allows the service to switch endpoints dynamically based on the \texttt{doshaType} string.
+    \item \textbf{Strategy Pattern:} The \texttt{computeDosha()} method in \texttt{AstroService} acts as the strategy dispatcher. Based on the \texttt{doshaType} value, it delegates to a dedicated private computation method --- \texttt{computeManglik()}, \texttt{computeKalSarp()}, \texttt{extractSadeSati()}, \texttt{computePitraDosh()}, or \texttt{computeNadi()}. Each method encapsulates a self-contained algorithm, making the strategies interchangeable without modifying the dispatch logic.
     \item \textbf{Observer Pattern:} Mongoose's \texttt{toJSON} method "observes" the model serialization. It automatically removes \texttt{password} and \texttt{tokens}, acting as a security sentinel.
 \end{itemize}
 
 \section{SOLID Principles Analysis}
 \begin{itemize}
     \item \textbf{SRP:} The \texttt{AuthMiddleware} has one job: verify the token. It does not handle database logic or response formatting.
-    \item \textbf{OCP:} Adding "Saturn Dosh" would only require adding a new key to the \texttt{DOSHA\_ENDPOINT\_MAP}. The \texttt{fetchOtherdosha} function remains untouched.
+    \item \textbf{OCP:} Adding "Saturn Dosh" would only require adding a new private method in \texttt{AstroService} and a new case in \texttt{computeDosha()}. The controller and routing layers remain untouched.
     \item \textbf{LSP:} We can replace the \texttt{AstroService} with a \texttt{MockAstroService} in our unit tests, and the \texttt{DoshaController} will work perfectly because both implement \texttt{IAstroService}.
-    \item \textbf{ISP:} We split \texttt{IAstroService} and \texttt{ICacheService}. A developer working on the profile page doesn't need to see methods related to Redis caching.
+    \item \textbf{ISP:} We split \texttt{IAstroService} (astro computation methods only) from other service contracts. A developer working on the profile page does not need to see methods related to dosha computation or chart fetching.
     \item \textbf{DIP:} High-level modules (Controllers) never import low-level modules (Axios/Vedic API). They interact through Service abstractions.
 \end{itemize}
 
@@ -224,6 +283,7 @@ The development of \textit{Deepa's Vision} was an exercise in building scalable 
 
 \subsection{Future Enhancements}
 \begin{itemize}
+    \item \textbf{Dedicated Cache Layer (Redis):} Currently, dosha reports are persisted to MongoDB with a 30-day TTL index. However, there is no cache-hit check before calling the VedicAstro API --- every request triggers a fresh API call. A dedicated \texttt{CacheService} backed by Redis would allow true cache-hit short-circuiting: if a valid report already exists for the same user and dosha type, it would be returned directly without hitting the external API, significantly reducing latency and API cost. An \texttt{ICacheService} interface would define the contract for this layer, allowing the controller to depend on the abstraction and keeping the Redis implementation swappable.
     \item \textbf{Microservices Transition:} As the user base grows, we plan to decouple the \texttt{AstroService} into a separate microservice to handle high-concurrency API calls.
     \item \textbf{Offline Support:} Implementing a Progressive Web App (PWA) strategy to allow users to view their saved charts without an internet connection.
 \end{itemize}
